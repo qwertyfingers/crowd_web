@@ -16,7 +16,7 @@ Display Keys
 <div>
 <h2>ACTIVE KEYS:</h2>
 {% for key in active_keys  %}
-<p><a href="{% url mturk1:simulation key %}">{{key}}</a></p>
+<p><a href="{% url mturk1_demo:simulation key %}">{{key}}</a></p>
 {% endfor %}
 
 {% endif %}
