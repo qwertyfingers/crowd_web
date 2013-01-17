@@ -9,6 +9,7 @@ import pdb
 from mTurk1.python.view_functions import validate_setup_files, dump_to_json,\
     process_reports_from_post
 from django.core.urlresolvers import reverse
+from core.urlresolvers import resolve
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger('django')
