@@ -13,14 +13,14 @@
 *.jpeg
 *settings.py
 *.db
-
+.pydevproject
 
 
 
 
 
 src/env2.db
-src/environment2/settings.py
+src/crowd_web/settings.py
 
 *.a
 *.class
