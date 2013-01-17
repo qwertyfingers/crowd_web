@@ -94,7 +94,7 @@ def simulation(request, key):
         #If process reports returned successfully
         if process_reports[0]==0:
             reward_key=current_pkg.reward_key
-            pdb.set_trace()
+            
             return HttpResponseRedirect(reverse('mturk1:thankyou_post', args=[key, reward_key]))
         else:
             error_message="The information provided was not valid"
