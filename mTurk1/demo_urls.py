@@ -4,7 +4,7 @@ from django.conf.urls import patterns, url
 
 
 urlpatterns = patterns('mTurk1.views',
-                       url(r'^display_keys/$', 'display_keys', name="display_keys"),
-                       url(r'^([A-Z0-9]{30})/$', 'simulation', name='simulation'),
-                       url(r'^([A-Z0-9]{30})([A-Z0-9]{30})/thankyou/$', 'thankyou_post',  name='thankyou_post')
+                       url(r'^display_keys/$', 'display_keys',{'cur_app':'mturk1_demo'}, name="display_keys",),
+                       url(r'^([A-Z0-9]{30})/$', 'simulation',{'cur_app':'mturk1_demo'}, name='simulation'),
+                       url(r'^([A-Z0-9]{30})([A-Z0-9]{30})/thankyou/$', 'thankyou_post',{'cur_app':'mturk1_demo'},  name='thankyou_post')
                        )
