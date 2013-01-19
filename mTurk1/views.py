@@ -11,7 +11,7 @@ from mTurk1.python.view_functions import validate_setup_files, dump_to_json,\
 from django.core.urlresolvers import reverse
 
 
-
+    
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger('django')
 EXPERIMENT_NAME='Experiment_0.1'
