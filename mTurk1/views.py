@@ -5,11 +5,11 @@ from mTurk1.models import Experiment_group, Pass_key_group
 from mTurk1.python.custom_exceptions import ConfigSettingError
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, HttpResponseRedirect
-import pdb
+
 from mTurk1.python.view_functions import validate_setup_files, dump_to_json,\
     process_reports_from_post
 from django.core.urlresolvers import reverse
-from core.urlresolvers import resolve
+
 
 
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
