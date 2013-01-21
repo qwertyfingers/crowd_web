@@ -1,16 +1,25 @@
 import sys,os
+import argparse
+
+#I'm not sure if this is needed
 PROJECT=(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..','..')))
 PROJECT2=(os.path.join(os.path.dirname( __file__ ),'..','lib','python2.7','django'))
 sys.path=[PROJECT,PROJECT2]+sys.path
+#
+
 import logging
 import pdb
 from mTurk1.python.database_functions import generate_experiment
+logger = logging.getLogger('django')
 
-def create_experiment_database():
-    from mTurk1.simulations.sim_test_1.configExp import ExperimentSettings
-    #TRY: get settings from ExperimentSettings module
+
+
+
+def create_experiment_database(experiment_settings):
+    
+    
     try:
-        experiment_settings=ExperimentSettings
+        experiment_settings
     except:
         logger.error("create_database: Could not initialise ExperimentSettings config file")
         return 1
@@ -88,9 +97,14 @@ def check_lists(sim_list,agent_list,view_list):
 #Main
 #===============================================================================      
 if __name__ == "__main__":
-    logger = logging.getLogger('django')
-    logger.info("Running: create_database")
-    result=create_experiment_database()
+    
+    #get settings file
+    from mTurk1.simulations.sim_test_1.configExp import ExperimentSettings
+    #TRY: get settings from ExperimentSettings module
+    experiment_settings=ExperimentSettings
+    
+    logger.info("Running: create_database") 
+    result=create_experiment_database(experiment_settings)
     logger.info("Finished: create_database, successful: %s" % result)
     
     
