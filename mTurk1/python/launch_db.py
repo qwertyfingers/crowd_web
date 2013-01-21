@@ -44,7 +44,7 @@ if args.mode==1:
     if experiment_exists:
         logger.info("Experiment %s already exists" %experiment_name)
     else:
-        logger("Experiment does not exists. Running create_experiment_database")
+        logger.info("Experiment does not exist. Running create_experiment_database")
         result=create_experiment_database(ExperimentSettings)
     #result=create_experiment_database(config_import)
 
