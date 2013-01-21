@@ -3,8 +3,7 @@ from create_database import create_experiment_database
 import logging
 from mTurk1.models import Experiment_group
 
-#for testing, remove when live
-from mTurk1.simulations.sim_test_1.configExp import ExperimentSettings
+
 
 
 
