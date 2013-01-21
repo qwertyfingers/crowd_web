@@ -9,22 +9,23 @@ from django.http import Http404, HttpResponseRedirect
 from mTurk1.python.view_functions import validate_setup_files, dump_to_json,\
     process_reports_from_post
 from django.core.urlresolvers import reverse
+import pdb
 
 
     
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger('django')
-EXPERIMENT_NAME='Experiment_0.1'
+
 
 
 #This view collects all the keys associated with the current experiemnt
 #Returns either an  error page, or a page of keys associated with the experiment
-def display_keys(request, cur_app):
+def display_keys(request, cur_app,exp_name):
     logger.info("view - display key")
     try:    
         try:
-            experiment=Experiment_group.objects.get(name=EXPERIMENT_NAME)
-            logger.debug("OK: Experiment_group found : name= %s" %EXPERIMENT_NAME)
+            experiment=Experiment_group.objects.get(name=exp_name)
+            logger.debug("OK: Experiment_group found : name= %s" %exp_name)
         except NameError as e:
             logger.exception("A config setting went wrong")
             raise ConfigSettingError(e)
@@ -51,7 +52,7 @@ def display_keys(request, cur_app):
     
     if len(active_keys)>=1 or len(inactive_keys)>=1:
         
-        return render(request,'mTurk1/display_keys.html',{'active_keys':active_keys, 'inactive_keys':inactive_keys})
+        return render(request,'mTurk1/display_keys.html',{'active_keys':active_keys, 'inactive_keys':inactive_keys, 'exp_name':exp_name })
     else:
         error_message="No keys for this experiemnt could be found"
         return render(request, 'mTurk1/error_page.html', {'error_message':error_message})
@@ -60,7 +61,7 @@ def display_keys(request, cur_app):
 
 
 
-def simulation(request, key,cur_app):
+def simulation(request, key,exp_name,cur_app):
     
     #Get the key from the url
     #Check key from url against database
@@ -97,7 +98,7 @@ def simulation(request, key,cur_app):
             reward_key=current_pkg.reward_key
             
             
-            return HttpResponseRedirect(reverse((cur_app+':thankyou_post'), args=[key, reward_key]))
+            return HttpResponseRedirect(reverse((cur_app+':thankyou_post'), args=[exp_name,key, reward_key]))
         else:
             error_message="The information provided was not valid"
             return render(request,'mTurk1/error_page.html',{'error_message': error_message})  
@@ -131,9 +132,39 @@ def simulation(request, key,cur_app):
     #return render(request, 'mTurk1/error_page.html', {'error_message':error_message})
     
 
-def thankyou_post(request,key=None,reward_key=None,cur_app=None): 
+def thankyou_post(request,exp_name,key=None,reward_key=None,cur_app=None): 
     
-    return render(request, 'mTurk1/thankyou_page.html',{"url_key":key, "reward_key": reward_key}) 
+  
+    
+    #Check key exists
+    
+    #Check key active
+    
+    
+    #Check reward_key
+    
+
+    
+    try:
+        current_pkg=Pass_key_group.objects.get(user_key=key)
+    except:
+        logger.debug("Key does not exist")
+        logger.exception("Key does not exist")
+        raise Http404
+        
+    #Check if key is active
+    if current_pkg.active_key==False:
+        logger.debug("Key is not active")
+        logger.exception("Key is not active")
+        raise Http404
+    
+    #Check if reward_key is correct
+    
+    if current_pkg.reward_key==reward_key:
+        #If both okay, then send to reward page
+        return render(request, 'mTurk1/thankyou_page.html',{"url_key":key, "reward_key": reward_key})
+    else:
+        raise Http404 
     
     
 
