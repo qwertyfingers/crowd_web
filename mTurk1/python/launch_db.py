@@ -3,8 +3,11 @@ from create_database import create_experiment_database
 import logging
 from mTurk1.models import Experiment_group
 
-
-
+#Setup the Django settings environment settings.
+#Change from <my_site> import settings
+#from django.core.management import setup_environ
+#from crowd_web import settings
+#setup_environ(settings)
 
 
 
