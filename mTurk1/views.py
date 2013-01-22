@@ -9,7 +9,7 @@ from django.http import Http404, HttpResponseRedirect
 from mTurk1.python.view_functions import validate_setup_files, dump_to_json,\
     process_reports_from_post
 from django.core.urlresolvers import reverse
-import pdb
+
 
 
     
