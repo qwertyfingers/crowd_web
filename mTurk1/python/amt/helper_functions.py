@@ -44,7 +44,7 @@ def create_relative_urls(exp_name,keys):
     """    
     relative_urls=[]
     for key in keys:
-        rel_url=exp_name+"/live/"+key+"/"
+        rel_url=exp_name+"/live/instructions/"+key+"/"
         relative_urls.append(rel_url)
     
     return relative_urls  

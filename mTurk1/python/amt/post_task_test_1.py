@@ -12,7 +12,8 @@ SECRET_KEY = 'HJYUwuQ20lhHXJcVYlwFs/HrpTWoU7uHIdmDwIFi'
 HOST = 'mechanicalturk.sandbox.amazonaws.com'
 
 # Experiment Settings
-domain_path = "http://127.0.0.1:8000/"
+domain_path="http://qwertyfinger.webfactional.com/experiments/"
+#domain_path = "http://127.0.0.1:8000/"
 exp_name = "experiment_1"
 
 
