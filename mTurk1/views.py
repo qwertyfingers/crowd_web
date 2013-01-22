@@ -12,6 +12,7 @@ from django.core.urlresolvers import reverse
 
 
 
+
     
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 logger = logging.getLogger('django')
@@ -25,6 +26,7 @@ def display_keys(request, cur_app,exp_name):
     logger.info("view - display key")
     try:    
         try:
+           
             experiment=Experiment_group.objects.get(name=exp_name)
             logger.debug("OK: Experiment_group found : name= %s" %exp_name)
         except NameError as e:
@@ -168,5 +170,7 @@ def thankyou_post(request,exp_name,key=None,reward_key=None,cur_app=None):
         raise Http404 
     
     
-
+def instructions(request,key,exp_name,cur_app):
+    
+    return render(request, 'uSim/instructions.html',{"url_key":key,"exp_name":exp_name, "cur_app":cur_app})
   

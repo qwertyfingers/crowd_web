@@ -1,0 +1,159 @@
+{% extends "uSim/web_frame.html" %}
+
+{% block static_files %}
+{% endblock %}
+
+
+{% block header_urls %}
+{% endblock %}
+
+{% block page_title %}
+Instructions
+{% endblock %}
+
+
+{% block main_content %}
+
+
+
+<div id="leftColInstruct">   
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/empty_sim2.jpg" alt="Empty Simulation" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/sim_started.jpg" alt="Simulation Started" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/target_appears_zoomed_circle.jpg" alt="Targets Appear" width="400" height="320"> 
+</div>
+
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/position_target_appears.jpg" alt="Position of Target" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/size_target.jpg" alt="Size of Target" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/colour_target.jpg" alt="Colour of Target" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/target_behaviour.jpg" alt="Behaviour of Target" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/good_bad_submit.jpg" alt="Good Submit Bad Submit" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/submit_report.jpg" alt="Submit Report" width="400" height="320"> 
+</div>
+
+<div class="instruction_box">	
+<img src="{{ STATIC_URL }}uSim/images/finish.jpg" alt="Finish" width="400" height="320"> 
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+<div id="rightColInstruct">
+<div class ="instruction_box">
+<h2>Starting the Simulation</h2>
+<p >Read these instructions carefully as the task will likely be new to you.
+If you do not submit any valid reports, your work will be rejected and you will not receive your payment!
+</p>
+<p>Shown opposite is the simulation viewer. At the moment, the simulation is empty.To start the simulation click "start", the button circled in Green</p>
+</div>
+
+<div class="instruction_box">
+<h2>The Simulation Window</h2>
+<p>A map will be loaded in the left window of the simulation viewer, and the simulation will start to run</p>
+<p>The progress bar will show you how long the simulation has remaining. In this example, most of the simulation is remaining</p>	
+	
+</div>
+
+<div class="instruction_box">
+<h2>Reporting on Targets</h2>	
+After some time, "targets" will appear (circled in green)	
+A target is a circle that moves along the roads in the map.
+Your task is to write reports as quickly and accurately as possible about what it does using the menu provided.
+
+<p>	
+A report is made up of 4 bits of information<br/>
+1:Position<br/>
+2:Size of target<br/>
+3: Colour of target<br/>
+4:Behaviour<br/></p>	
+</div>
+<div class="instruction_box">
+<h2>1.Position</h2>
+<p>
+To give the position, click on the map where the target is.So if a target appears on a road, click where that happened. If a target turns a corner, click where that happened
+Here, the user has clicked where the target has appeared
+</p>
+</div>
+
+<div class="instruction_box">
+<h2>2.Size of Target</h2>
+<p>Enter the targets size using the drop down menu. You can select between Small, Medium, and Large</p>	
+</div>
+
+<div class="instruction_box">
+<h2>3. Colour of Target</h2>	
+<p>
+Enter the targets colour using the drop down menu. You can select between 16 different colours. Pick the one you think is closest to the targets colour.	
+</p>	
+</div>
+
+<div class ="instruction_box">
+<h2>4. Behaviour of Target</h2>	
+<p>Enter the behaviour of the target by clicking one of the behaviour buttons. Here, the user has selected that the target has appeared.</p>	
+</div>
+
+<div class="instruction_box">
+<h2>Valid Reports</h2>
+<p>In order for reports to be accepted, all the information must be entered before submitting.</p>
+<p> The example on the far left shows a good report, ready to be submitted. The 4 pieces of information have been entered</p>
+<p> The example on the near left is not ready to be submitted. The user still has to select a position by clicking on the map. If the user trys to submit this report without adding a position, it will be rejected</p>		
+</div>
+
+<div class="instruction_box">
+<h2>Submitting Reports</h2>
+
+<p>Once all 4 pieces of information are entered in to a report using the menu, click the "submit the report"" button at the bottom of the menu</p>
+<p>Once a report is submitted, the menu will be reset back to the original state</p>
+<p>You can enter as many reports as you want in the time, but remember; for each report fill out all 4 pieces of information in the menu, then hit "submit the report"</p>
+</div>
+
+<div class="instruction_box">
+<h2>Finishing and Sending Reports</h2>
+
+<p>Once the simulation has finished (the timer at the top of the menu will be completely filled), you should see a pop-up window telling you that the simulation has finished. Click ok on this window</p>
+<p>The buttons at the bottom of the menu will have now changed to "Finish(send the reports)", shown circled in green in the image opposite</p>
+</div>
+<div class="instruction_box">
+<p> Click "Finish(send the reports)" to finish the task. If you have submitted atleast 1 valid report (containing all 4 pieces of information), you will be taken to the reward page. Follow the instructions on this page to receive your payment</p>
+<p>If all your reports have been rejected, then you will be taken to an error page. By clicking back in your browser, you can try the simulation again.</p>
+</div>	
+
+
+<div class="instruction_box">
+<p>To proceed to the simulation click the button below</p>
+
+<p><a href="{% url mturk1_live:simulation exp_name url_key %} ">Link to simulation</a></p>
+
+</div>
+</div>
+{% endblock %}
