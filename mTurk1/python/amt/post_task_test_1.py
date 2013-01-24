@@ -1,7 +1,17 @@
+# set up the environment using the settings module
+import logging
+#Set up logger.
+logger = logging.getLogger('django')
+import sys
+sys.path=(['/home/qwertyfinger/webapps/crowd_web/crowd_web'])+sys.path
+from django.core.management import setup_environ
+from crowd_web import settings
+setup_environ(settings)
+
+
 
 from mTurk1.python.amt.helper_functions import (check_absolute_urls,
 list_experiment_keys, create_absolute_urls)
-import logging
 from mTurk1.python.amt.post_exp_test import post_HIT1
 logger = logging.getLogger('django')
 
