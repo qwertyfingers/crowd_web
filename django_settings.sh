@@ -1,4 +1,4 @@
 #!/bin/bash
 echo $DJANGO_SETTINGS_MODULE
-DJANGO_SETTINGS_MODULE=crowd_web.settings
+export DJANGO_SETTINGS_MODULE=crowd_web.settings
 echo $DJANGO_SETTINGS_MODULE
