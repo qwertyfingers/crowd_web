@@ -1,7 +1,9 @@
 # set up the environment using the settings module
-
+import logging
+#Set up logger.
+logger = logging.getLogger('django')
 import sys
-sys.path.append('/home/qwertyfinger/webapps/crowd_web')
+sys.path(['/home/qwertyfinger/webapps/crowd_web/crowd_web'])+sys.path
 from django.core.management import setup_environ
 from crowd_web import settings
 setup_environ(settings)
@@ -10,7 +12,7 @@ setup_environ(settings)
 
 import argparse
 from create_database import create_experiment_database
-import logging
+
 from mTurk1.models import Experiment_group
 
 #Setup the Django settings environment settings.
@@ -21,8 +23,7 @@ from mTurk1.models import Experiment_group
 
 
 
-#Set up logger.
-logger = logging.getLogger('django')
+
 
 
 #Set up command line arguments. These are required postional arguments
