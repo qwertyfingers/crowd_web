@@ -57,6 +57,6 @@ if args.mode==1:
     else:
         logger.info("Experiment does not exist. Running create_experiment_database")
         result=create_experiment_database(ExperimentSettings)
-    #result=create_experiment_database(config_import)
+        logger.info(result)
 
 
