@@ -1,3 +1,10 @@
+# set up the environment using the settings module
+from django.core.management import setup_environ
+from crowd_web import settings
+setup_environ(settings)
+
+
+
 import argparse
 from create_database import create_experiment_database
 import logging
