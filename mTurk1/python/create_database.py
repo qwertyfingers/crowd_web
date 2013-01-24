@@ -2,9 +2,9 @@ import sys,os
 import argparse
 
 #I'm not sure if this is needed
-PROJECT=(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..','..')))
-PROJECT2=(os.path.join(os.path.dirname( __file__ ),'..','lib','python2.7','django'))
-sys.path=[PROJECT,PROJECT2]+sys.path
+#PROJECT=(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..','..')))
+#PROJECT2=(os.path.join(os.path.dirname( __file__ ),'..','lib','python2.7','django'))
+#sys.path=[PROJECT,PROJECT2]+sys.path
 #
 
 import logging
