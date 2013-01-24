@@ -7,7 +7,7 @@ def post_HIT1(ACCESS_ID,SECRET_KEY,HOST,url_to_task):
                       aws_secret_access_key=SECRET_KEY,
                       host=HOST)
  
-    title = 'Dev deploying simulation test Report1'
+    title = 'Dev deploying simulation test Report From SERVER'
     description = ('Report on events in a simulation')
     keywords = 'website, rating, opinions'
     instructions=('<p>You will take part in a web-based experiment where you will watch a simple simulation and provide reports on events</p>'
