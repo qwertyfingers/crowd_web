@@ -3,7 +3,7 @@ import logging
 #Set up logger.
 logger = logging.getLogger('django')
 import sys
-sys.path(['/home/qwertyfinger/webapps/crowd_web/crowd_web'])+sys.path
+sys.path=(['/home/qwertyfinger/webapps/crowd_web/crowd_web'])+sys.path
 from django.core.management import setup_environ
 from crowd_web import settings
 setup_environ(settings)
