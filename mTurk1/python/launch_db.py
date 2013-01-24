@@ -1,10 +1,11 @@
 # set up the environment using the settings module
 
+import sys
+sys.path.append('/home/qwertyfinger/webapps/crowd_web')
 from django.core.management import setup_environ
 from crowd_web import settings
 setup_environ(settings)
-import sys
-sys.path.append('/home/qwertyfinger/webapps/crowd_web')
+
 
 
 import argparse
