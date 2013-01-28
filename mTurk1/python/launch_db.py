@@ -59,6 +59,6 @@ if args.mode==1:
     else:
         logger.info("Experiment does not exist. Running create_experiment_database")
         result=create_experiment(ExperimentSettings)
-        logger.info(result)
-
+        
+        logger.info("OK: CREATED EXPERIMENT")
 

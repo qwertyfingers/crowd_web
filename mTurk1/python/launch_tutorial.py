@@ -15,9 +15,8 @@ setup_environ(settings)
 
 
 import argparse
-from create_database import create_experiment_database
-
-from mTurk1.models import Experiment_group
+from create_tutorial import create_tutorial
+from mTurk1.models import  Simulation
 
 #Setup the Django settings environment settings.
 #Change from <my_site> import settings
@@ -34,7 +33,6 @@ from mTurk1.models import Experiment_group
 parser=argparse.ArgumentParser()
 parser.add_argument("sim_folder", help="name of specific simulation folder in simulations folder")
 parser.add_argument("config",help="Name of config file in specific simulation folder")
-parser.add_argument("-m","--mode",help="The mode to operate in ",action="count", default=1)
 args=parser.parse_args()
 
 
@@ -42,25 +40,26 @@ args=parser.parse_args()
 config_import='mTurk1.simulations.'+args.sim_folder+'.'+args.config
 
 
-logger.info("Looking for ExperimentSettings in: %s" %config_import)
-_temp=__import__(config_import, globals={}, locals={}, fromlist=['ExperimentSettings'], level=-1)
-ExperimentSettings=_temp.ExperimentSettings
-logger.info("Found ExperimentSettings")
-experiment_name=ExperimentSettings.exp_name
+logger.info("Looking for TutorialSettings in: %s" %config_import)
+_temp=__import__(config_import, globals={}, locals={}, fromlist=['TutorialSettings'], level=-1)
+TutorialSettings=_temp.TutorialSettings
+logger.info("Found TutorialsSettings")
+tutorial_name=TutorialSettings.tutorial_name
 
 #Check if experiment_name exists.
 try:
-    experiment_exists=Experiment_group.objects.filter(name=experiment_name).exists()   
+    tutorial_exists=Simulation.objects.filter(simulation_name=tutorial_name).exists()   
 except:
-    logger.error("Could not check for existence of Experiment Name: %s" %experiment_name)
+    logger.error("Could not check for existence of tutorial Name: %s" %tutorial_name)
     
 #Check if Experiment exists. If it does, do nothing. If it doesn't then create Experiment
 if args.mode==1:
-    if experiment_exists:
-        logger.info("Experiment %s already exists" %experiment_name)
+    if tutorial_exists:
+        logger.info("Tutorial %s already exists" %tutorial_name)
     else:
-        logger.info("Experiment does not exist. Running create_experiment_database")
-        result=create_experiment_database(ExperimentSettings)
-        logger.info(result)
+        logger.info("Experiment does not exist. Running create_tutorial")
+        result=create_tutorial(TutorialSettings)
+        
+        logger.info("OK: CREATED TUTORIAL")
 
 
