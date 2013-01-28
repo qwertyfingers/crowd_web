@@ -1,0 +1,45 @@
+{% extends "uSim/web_frame.html" %}
+
+{% block static_files %}
+{% endblock %}
+
+
+{% block header_urls %}
+{% endblock %}
+
+{% block page_title %}
+Tutorial Results
+{% endblock %}
+
+
+{% block main_content %}
+
+
+
+
+<p>You submitted the following reports:<br/>
+Valid reports: {{ valid_reports }}<br/>
+Invalid reports: {{ invalid_reports }}<p></p>
+
+{% if warning %}
+
+<p style="color:red">{{ warning }}</p>
+
+{% endif %}
+
+
+
+If you would like to read the instructions again and try the practice simualtion again, click on this link:
+<p><a href="{% url mturk1_live:instructions exp_name url_key %} ">Go back to instructions</a></p>
+
+If you would like to only try the practice simulation again, then click on this link
+<p><a href="{% url mturk1_live:instructions2 exp_name url_key %} ">Try practice simulation again</a></p>
+
+If you feel ready for the real simulation then click the link below. Remember, you must write atealst 1 valid report before you will be given your reward key. Your
+work will be checked for quality after submission.    
+<p><a href="{% url mturk1_live:simulation exp_name url_key %} ">Link to simulation</a></p>
+
+
+
+
+{% endblock %}

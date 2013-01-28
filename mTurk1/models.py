@@ -7,66 +7,7 @@ import os
 import json
 import random
 import string
-from django.db.models.fields.related import ForeignKey
-
-
-
-#Manager for table wide key_sim_pair functions
-class Key_sim_pair_manager(models.Manager):
-    def get_random_order(self):
-        random_order = self.objects.order_by('?')
-        return random_order
-
-class Key_sim_pair(models.Model):
-    
-    """
-    A model that creates a key-sim pair with the following fields
-        key : The unique identifier key for the simulation
-        simulation : The path to a simulation file
-        active - Boolean value that designates if the simulation is active(points towards a simulation) or not
-        reward_key - The unique key used to identify when a user completes the task
-    
-    """
-    #validator for keys
-    key_regex = re.compile('[A-Z0-9]{30}')
-    key_validator = validators.RegexValidator(key_regex)
-    
-    key = models.CharField(max_length=30, validators=[key_validator])
-    simulation = models.CharField(max_length=100)
-    active = models.BooleanField(default=True)
-    reward_key = models.CharField(max_length=30, validators=[key_validator])
-    
-    
-    def __unicode__(self):
-        return self.key
-    
-    def valid_reward(self, reward_to_check):
-        if (self.reward_key == reward_to_check):
-            return True
-        else:
-            return False
-        
-       
-        
-    def be_rewarded(self, reward_to_check):
-        if(self.active):
-            if(self.valid_reward(reward_to_check)):
-                return True
-            else:
-                return False
-        else:
-            return False
-
-class Report_group(models.Model):
-    key_sim_pair = models.ForeignKey(Key_sim_pair)
-    def __unicode__(self):
-        return self.key_sim_pair.key
-
-
-
-
-
-        
+from django.db.models.fields.related import ForeignKey   
 
 
 #===============================================================================
@@ -175,6 +116,13 @@ class Simulation(models.Model):
         return ("%s %s") %(self.id, self.simulation_name)
     
 
+class Tutorial_instance(models.Model):
+    simulation = models.ForeignKey(Simulation)
+    view_instance = models.ForeignKey(View_setup)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 class Simulation_instance(models.Model):
     """
     A model that creates a particular instance of a simulation
@@ -191,7 +139,9 @@ class Simulation_instance(models.Model):
         return ("%s, SIM:%s, VIEW:%s") %(self.id, self.simulation.simulation_name, self.view_instance.id)
     
 class Experiment_group(models.Model):
-    name=models.CharField(max_length=100)
+    
+    name=models.CharField(max_length=100, unique=True)
+    tutorial=models.ForeignKey(Tutorial_instance,null=True,blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     def __unicode__(self):
@@ -225,7 +175,26 @@ class Pass_key_group(models.Model):
 
 
 class Report_group2(models.Model):
+    
+   
+    LIVE='LIVE' #Live experiments
+    DEMO='DEMO' #Demo experiments
+    AUTO='AUTO' #Auto, wasn't set. Default value
+    TUTORIAL_DEMO='TUDE' #Tutorial Demo
+    TUTORIAL_LIVE='TULI' #Tutorial Live 
+    
+    REPORT_TYPE=(
+                 (LIVE,'Live'),
+                 (TUTORIAL_LIVE,'Tutorial_Live'),
+                 (TUTORIAL_DEMO,'Tutorial_Demo'),
+                 (DEMO,'Demo'),
+                 (AUTO,'Auto')
+                     )
+    
+    
+    report_type=models.CharField(max_length=4,choices=REPORT_TYPE,default=AUTO)
     pass_key_group = models.ForeignKey(Pass_key_group)
+    
     def __unicode__(self):
         return ("%s PASS_KEY_GROUP: %s") %(self.id, self.pass_key_group.id)
 
@@ -236,7 +205,7 @@ def create_key(key_length=30, chars=string.ascii_uppercase + string.digits):
     
 class GUI_report_1(models.Model):
     
-    COLOUR_CHOICES = [('NONE', 'none'),
+    COLOUR_CHOICES = [
                     ('BLACK', 'black'),
                     ('NAVY', 'navy'),
                     ('GREEN', 'green'),

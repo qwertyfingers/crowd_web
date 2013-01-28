@@ -8,11 +8,17 @@
 {% endblock %}
 
 {% block page_title %}
-Sorry...
+Invalid Submission
 {% endblock %}
 
 
 {% block main_content %}
+<p>You returned the following reports:<br/>
+	Valid reports: {{ valid_reports }}<br/>
+	Invalid_reports: {{ invalid_reports }}<br/>
+</p>
+
+In order to receive your reward key to enter on the Mechnical Turk website, you must submit atleast 1 valid report.
 {% if error_message %}
 {{error_message}}
 {% endif %}

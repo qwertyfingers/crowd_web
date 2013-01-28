@@ -1,3 +1,10 @@
+#This script is designed to be run from the command line
+#It therefor defines more in its imports than other scripts
+
+
+
+
+
 # set up the environment using the settings module
 import logging
 #Set up logger.
@@ -11,8 +18,7 @@ setup_environ(settings)
 
 
 import argparse
-from create_database import create_experiment_database
-
+from create_database import create_experiment
 from mTurk1.models import Experiment_group
 
 #Setup the Django settings environment settings.
@@ -43,20 +49,16 @@ _temp=__import__(config_import, globals={}, locals={}, fromlist=['ExperimentSett
 ExperimentSettings=_temp.ExperimentSettings
 logger.info("Found ExperimentSettings")
 experiment_name=ExperimentSettings.exp_name
+experiment_exists=Experiment_group.objects.filter(name=experiment_name).exists()   
 
-#Check if experiment_name exists.
-try:
-    experiment_exists=Experiment_group.objects.filter(name=experiment_name).exists()   
-except:
-    logger.error("Could not check for existence of Experiment Name: %s" %experiment_name)
     
 #Check if Experiment exists. If it does, do nothing. If it doesn't then create Experiment
 if args.mode==1:
     if experiment_exists:
-        logger.info("Experiment %s already exists" %experiment_name)
+        logger.info("ABORT: Experiment %s already exists" %experiment_name)
     else:
         logger.info("Experiment does not exist. Running create_experiment_database")
-        result=create_experiment_database(ExperimentSettings)
+        result=create_experiment(ExperimentSettings)
         logger.info(result)
 
 

@@ -99,12 +99,6 @@ function bindGUIControls() {
     $("#GUI2SizeSelectTime").val(uSim.GUI.report_data.size_select_time)
     $("#GUI2SizeSelectFrame").val(uSim.GUI.report_data.size_select_frame)
     
-    
-    
-    
-    
-    
-    
     var report=$("#GUIInputForm").serialize();
     uSim.user.data.reports.push(report) 
     var numReports=uSim.user.data.reports.length
@@ -149,7 +143,7 @@ function bindGUIControls() {
         $('.GUI2ActionButton').removeClass('GUI2ButtonSelected');
         $("#grid1").attr("class", "GUI2NotCompleteBorder");
         $("#GUI2Position").attr("class", "GUI2NotCompleteBorder")
-
+		$("#GUI2ActionState").val("")
     }
 
 
@@ -160,7 +154,7 @@ function bindGUIControls() {
 
         var selected = $(this).find('option:selected')
         var sizeSelected = $("#sizeSelect").find('option:selected')
-        if (selected.val() == "none") {
+        if (selected.val() == "NONE") {
             $("#GUI2AgentDescription").attr("class", "GUI2NotCompleteBorder")
         } else if (sizeSelected.val() == "none") {
             $("#GUI2AgentDescription").attr("class", "GUI2NotCompleteBorder")
@@ -178,7 +172,7 @@ function bindGUIControls() {
         var colorSelected = $("#colorSelect").find('option:selected')
         if (selected.val() == "none") {
             $("#GUI2AgentDescription").attr("class", "GUI2NotCompleteBorder")
-        } else if (colorSelected.val() == "none") {
+        } else if (colorSelected.val() == "NONE") {
             $("#GUI2AgentDescription").attr("class", "GUI2NotCompleteBorder")
         } else {
             $("#GUI2AgentDescription").attr("class", "GUI2CompleteBorder")

@@ -1,7 +1,7 @@
 from django.contrib import admin
-from mTurk1.models import Key_sim_pair, GUI_report_1, Report_group, Sim_setup,\
+from mTurk1.models import  GUI_report_1, Sim_setup,\
     Agent_setup, View_setup, Simulation, Simulation_instance, Pass_key_group,\
-    Experiment_group, Report_group2
+    Experiment_group, Report_group2, Tutorial_instance
 
 
 
@@ -56,3 +56,4 @@ admin.site.register(Pass_key_group)
 admin.site.register(Experiment_group,Experiment_admin)
 admin.site.register(GUI_report_1)
 admin.site.register(Report_group2, Report_Group_admin)
+admin.site.register(Tutorial_instance)
