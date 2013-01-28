@@ -33,6 +33,7 @@ from mTurk1.models import  Simulation
 parser=argparse.ArgumentParser()
 parser.add_argument("sim_folder", help="name of specific simulation folder in simulations folder")
 parser.add_argument("config",help="Name of config file in specific simulation folder")
+parser.add_argument("-m","--mode",help="The mode to operate in (unused) ",action="count", default=1)
 args=parser.parse_args()
 
 
