@@ -43,7 +43,7 @@ def create_experiment(experiment_settings):
 if __name__ == "__main__":
     
     #get settings file
-    from mTurk1.simulations.sim_test_1.configExp2 import ExperimentSettings
+    from mTurk1.simulations.sim_constant_speed_1.configExp import ExperimentSettings
     #TRY: get settings from ExperimentSettings module
     experiment_settings=ExperimentSettings
     
